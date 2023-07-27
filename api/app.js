@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 
-const db = require("./database.js")
+const db = require("./database.js");
+const { apiResponse, statusOptions} = require('./api-response.js');
 
 app.use(express.json());
 
@@ -19,13 +20,12 @@ app.get('/books', (req, res) => {
     
     db.all(sql, params, (err, rows) => {
         if (err) {
-          res.status(400).json({"error":err.message});
+          res.status(400).json(
+            apiResponse(statusOptions.failed,res.statusCode,"failed to get list of books"));
           return;
         }
-        res.json({
-            "message":"success",
-            "data":rows
-        })
+        res.status(200).json(
+          apiResponse(statusOptions.success,res.statusCode,"list of books returned",rows));
       });
 
 });
@@ -38,7 +38,6 @@ app.post('/books', (req, res) => {
      VALUES (?, ?, ?, ?)`
 
     var data = req.body
-    console.log("datattaaaaaaaaaaaaaaaa", data)
     
     var params = [
         data.title,
