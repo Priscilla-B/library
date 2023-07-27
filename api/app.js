@@ -25,7 +25,7 @@ app.get('/books', (req, res) => {
           return;
         }
         res.status(200).json(
-          apiResponse(statusOptions.success,res.statusCode,"list of books returned",rows));
+            apiResponse(statusOptions.success,res.statusCode,"list of books returned",rows));
       });
 
 });
@@ -35,7 +35,7 @@ app.get('/books', (req, res) => {
 app.post('/books', (req, res) => {
     // var values = [req.body.]
     var query = `INSERT INTO book (title, author, publication_year, isbn_number)
-     VALUES (?, ?, ?, ?)`
+    VALUES (?, ?, ?, ?)`
 
     var data = req.body
     
@@ -47,24 +47,21 @@ app.post('/books', (req, res) => {
     ]
     
     db.run(query, params, (err, result) => {
-      if (err){
-        res.status(400).json({"error": err.message})
-          return;
-      }
-      res.json({
-        "message":"success",
-        "data":data,
-        "id":this.lastID
+        if (err){
+            res.status(400).json(
+                apiResponse(statusOptions.failed,res.statusCode,"failed to create book"));
+            return;
+        }
+        res.status(201).json(
+            apiResponse(statusOptions.success,res.statusCode,"New book created",data));
       })
-    })
-
 });
 
 function validateBookData(data){
-  if (data.isbn_number == null){
-
-  }
-}
+    if (data.isbn_number == null){
+  
+    }
+  };
 
 
 

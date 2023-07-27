@@ -14,7 +14,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             title TEXT, 
             author TEXT, 
             publication_year INTEGER, 
-            isbn_number TEXT  NOT NULL UNIQUE
+            isbn_number TEXT NOT NULL UNIQUE
             )`,
             
         (err) => {
