@@ -1,5 +1,4 @@
 var sqlite3 = require('sqlite3').verbose()
-var md5 = require('md5')
 
 const DBSOURCE = "db.sqlite"
 
@@ -12,10 +11,10 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         console.log('Connected to the SQLite database.')
         db.run(`CREATE TABLE book (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title text, 
-            author text, 
+            title TEXT, 
+            author TEXT, 
             publication_year INTEGER, 
-            isbn_number INTEGER UNIQUE
+            isbn_number TEXT NOT NULL UNIQUE
             )`,
             
         (err) => {
