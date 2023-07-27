@@ -37,4 +37,5 @@ exports.apiResponse = (status, statusCode, message, data)=> {
 exports.statusOptions = {
   success:"success",
   failed:"failed"
+
 }
