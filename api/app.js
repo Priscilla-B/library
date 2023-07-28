@@ -58,9 +58,13 @@ app.post('/books', (req, res) => {
 });
 
 function validateBookData(data){
+    var validationErrors = {}
+
     if (data.isbn_number == null){
-  
+        
     }
+
+    return true
   };
 
 
