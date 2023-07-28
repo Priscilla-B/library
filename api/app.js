@@ -60,6 +60,7 @@ app.post('/books', (req, res) => {
           })
 
     }else{
+        console.log(validationResults);
         res.status(400).json(
             apiResponse(statusOptions.failed,res.statusCode,"Request data validation returned error", validationResults));
     }
@@ -72,7 +73,6 @@ function isEmptyObject(obj) {
     console.log("title", obj["title"])
     for (var key in obj) {
       if (obj[key] != null ) {
-        console.log("key is not empty", key, `|${obj[key].trim().replace(" ","")}|`)
         return false;
       }
     }
@@ -83,7 +83,6 @@ function validateBookData(data){
     var validationErrors = [];
     
     if (isEmptyObject(data)){
-        console.log("empttytytytyyyyyyyyyyyyyyyyyyyyyyyy")
         return validationErrors.push({"data":"Request data cannot be empty"})
     }
     if (data.title == null){
@@ -94,15 +93,15 @@ function validateBookData(data){
         validationErrors.push({"isbn_number":"isbn_number is required"})
     };
 
-    if (data.isbn_number.length != 10 || data.isbn_number.length != 13){
+    if (data.isbn_number?.length != 10 || data.isbn_number.length != 13){
         validationErrors.push({"isbn_number":"length should be 10 or 13 characters"})
     };
 
-    if (data.publication_year.length > 4){
+    if (data.publication_year?.length > 4){
         validationErrors.push({"publication_year":"publication year cannot be more than 4 characters"})
     };
 
-    if (validationErrors.length > 0){
+    if (validationErrors?.length > 0){
         return validationErrors;
     };
 
