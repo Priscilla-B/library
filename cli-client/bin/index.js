@@ -24,27 +24,6 @@ const msgBox = boxen( greeting, boxenOptions );
 
 console.log(msgBox);
 
-const url = "https://priscilla-b-zany-space-winner-6wrvjpvrwrg3rgxw-5000.preview.app.github.dev/books";
-
-axios.get(url, { headers: { Accept: "application/json" } })
- .then(res => {
-   console.log(res.data);
- });
-
-// The url depends on searching or not
-// const searchUrl = options.search ? `https://icanhazdadjoke.com/search?term=${escape(options.search)}` : "https://icanhazdadjoke.com/";
-
-// axios.get(searchUrl, { headers: { Accept: "application/json" } })
-//  .then(res => {
-//    if (options.search) {
-//      // if searching for jokes, loop over the results
-//      res.data.results.forEach( j => {
-//        console.log("\n" + j.joke);
-//      });
-//      if (res.data.results.length === 0) {
-//        console.log("no jokes found :'(");
-//      }
-//    } else {
-//      console.log(res.data.joke);
-//    }
-//  });
+console.log(chalk.blue.bold("Here are a list of commands available to explore the book management system"));
+console.log("-- get-books: to get a list of books available");
+console.log("-- create-book: to add a new book");
